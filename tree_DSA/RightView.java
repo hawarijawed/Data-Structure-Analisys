@@ -29,20 +29,22 @@ class Tree
       //BFS search
       while(!queue.isEmpty()){
           int size = queue.size();
-          while(size>0){
-              Node temp = queue.pop();
-              if(temp.left != null){
-                  queue.add(temp.left);
-              }
-              
-              if(temp.right != null){
-                  queue.add(temp.right);
-              }
-              
-              if(size == 0){
-                  lst.add(temp.data);
-              }
-          }
+          for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                
+                // If this is the rightmost element of the level, add it to the result
+                if (i == size - 1) {
+                    lst.add(node.val);
+                }
+
+                // Add children to the queue
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
       }
       
       return lst;
